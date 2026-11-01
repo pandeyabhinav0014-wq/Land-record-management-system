@@ -1,0 +1,93 @@
+[
+  {
+    "rule_id": "RULE-01",
+    "description": "Exact survey-number agreement within the same village provides strong matching evidence.",
+    "severity": "INFO",
+    "evidence_fields": ["survey_number_agreement", "address_similarity"],
+    "action": "BOOST_CONFIDENCE",
+    "confidence_delta": 0.15,
+    "conditions": {
+      "exact_survey": true,
+      "min_address_similarity": 0.65
+    }
+  },
+  {
+    "rule_id": "RULE-02",
+    "description": "A large area discrepancy (> 25%) lowers confidence and signals potential parcel subdivision or record discrepancy.",
+    "severity": "WARNING",
+    "evidence_fields": ["relative_area_difference"],
+    "action": "PENALIZE_CONFIDENCE",
+    "confidence_delta": -0.20,
+    "conditions": {
+      "min_relative_area_diff": 0.25
+    }
+  },
+  {
+    "rule_id": "RULE-03",
+    "description": "Geographic overlap supports a candidate match but does not independently establish identity.",
+    "severity": "INFO",
+    "evidence_fields": ["polygon_iou", "spatial_proximity"],
+    "action": "SUPPORTING_EVIDENCE",
+    "confidence_delta": 0.10,
+    "conditions": {
+      "min_polygon_iou": 0.50
+    }
+  },
+  {
+    "rule_id": "RULE-04",
+    "description": "Conflicting parcel identifiers trigger a manual review flag even if other attributes partially align.",
+    "severity": "WARNING",
+    "evidence_fields": ["exact_parcel_id", "fuzzy_parcel_id"],
+    "action": "FLAG_MANUAL_REVIEW",
+    "confidence_delta": -0.15,
+    "conditions": {
+      "max_fuzzy_parcel_id": 0.40
+    }
+  },
+  {
+    "rule_id": "RULE-05",
+    "description": "A missing owner name must not automatically reject a match.",
+    "severity": "INFO",
+    "evidence_fields": ["owner_name"],
+    "action": "NEUTRAL_PRESERVE",
+    "confidence_delta": 0.0,
+    "conditions": {
+      "missing_owner_name": true
+    }
+  },
+  {
+    "rule_id": "RULE-06",
+    "description": "Strong identifier agreement combined with distant or non-overlapping parcel geometry triggers a conflict warning.",
+    "severity": "HIGH",
+    "evidence_fields": ["exact_parcel_id", "geographic_distance_meters", "polygon_iou"],
+    "action": "FLAG_GEOMETRY_CONFLICT",
+    "confidence_delta": -0.25,
+    "conditions": {
+      "min_survey_agreement": 0.90,
+      "min_distance_meters": 500.0
+    }
+  },
+  {
+    "rule_id": "RULE-07",
+    "description": "A low-confidence or borderline candidate must be routed to manual review.",
+    "severity": "WARNING",
+    "evidence_fields": ["overall_confidence"],
+    "action": "ROUTE_TO_REVIEW",
+    "confidence_delta": 0.0,
+    "conditions": {
+      "confidence_range": [0.45, 0.79]
+    }
+  },
+  {
+    "rule_id": "RULE-08",
+    "description": "Contradictory land-use classifications should be recorded as an attribute conflict, not necessarily a different-parcel decision.",
+    "severity": "WARNING",
+    "evidence_fields": ["land_use_agreement"],
+    "action": "RECORD_ATTRIBUTE_CONFLICT",
+    "confidence_delta": -0.05,
+    "conditions": {
+      "max_land_use_agreement": 0.10
+    }
+  }
+]
+

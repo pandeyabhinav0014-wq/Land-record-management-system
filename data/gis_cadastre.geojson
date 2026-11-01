@@ -1,0 +1,84 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "GIS-CAD-501",
+        "survey_no": "14/1",
+        "owner": null,
+        "address": "RAMPUR REVENUE SECTOR CADASTRE",
+        "area": 4048.0,
+        "area_unit": "sq_meters",
+        "land_use": "AGRICULTURAL",
+        "date": "2023-11-01",
+        "village": "RAMPUR"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [77.2085, 28.6135],
+            [77.2095, 28.6135],
+            [77.2095, 28.6143],
+            [77.2085, 28.6143],
+            [77.2085, 28.6135]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "GIS-CAD-502",
+        "survey_no": "14/2-A",
+        "owner": "SUNITA DEVI",
+        "address": "RAMPUR VILLAGE SECTOR B",
+        "area": 2529.0,
+        "area_unit": "sq_meters",
+        "land_use": "AGRICULTURAL",
+        "date": "2023-11-01",
+        "village": "RAMPUR"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [77.2100, 28.6140],
+            [77.2110, 28.6140],
+            [77.2110, 28.6150],
+            [77.2100, 28.6150],
+            [77.2100, 28.6140]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "GIS-CAD-503",
+        "survey_no": "52/B",
+        "owner": "METRO LOGISTICS",
+        "address": "SECTOR 6 INDUSTRIAL CADASTRE",
+        "area": 8092.0,
+        "area_unit": "sq_meters",
+        "land_use": "INDUSTRIAL",
+        "date": "2023-11-01",
+        "village": "SECTOR 6"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [77.2205, 28.6245],
+            [77.2215, 28.6245],
+            [77.2215, 28.6255],
+            [77.2205, 28.6255],
+            [77.2205, 28.6245]
+          ]
+        ]
+      }
+    }
+  ]
+}
+
